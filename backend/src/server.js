@@ -2,12 +2,14 @@ import express from "express";
 import "dotenv/config";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
-import routes from "./routes/index"
+import routes from "./routes/index";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 
 app.use(bodyParser.json());
-app.use("/v1/shop",routes);
+app.use("/v1/shop", routes);
 const dbUrl = process.env.DATABASE_URL;
 mongoose
   .connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
